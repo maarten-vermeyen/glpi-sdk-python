@@ -425,6 +425,8 @@ class GlpiService(object):
             payload = '{"profiles_id": %d}' % (item_id)
 
         response = self.request('POST', self.uri, data=json_import.dumps(payload))
+        print(json_import.dumps(payload))
+        print(response.status_code)
         if response.text == "":
             return {"status": True}
         return response.json()
