@@ -435,7 +435,7 @@ class GlpiService(object):
         payload = '{"input": { %s }}' % (self.get_payload(data))
         new_url = "%s/%d" % (self.uri, data['id'])
 
-        response = self.request('PUT', new_url, data=payload)
+        response = self.request('PUT', new_url, json=payload)
 
         return response.json()
 
