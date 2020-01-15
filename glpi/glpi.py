@@ -327,7 +327,7 @@ class GlpiService(object):
                                         data=data, json=json, **kwargs)
             print(response.request.url)
             try:
-                print(response.request.json)
+                print(response.request.body)
             except Exception as e:
                 print(e)
         except Exception:
