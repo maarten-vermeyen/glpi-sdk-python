@@ -324,7 +324,7 @@ class GlpiService(object):
         try:
             response = requests.request(method=method, url=full_url,
                                         headers=headers, params=params,
-                                        data=json_import.dumps(data), **kwargs)
+                                        data=data, **kwargs)
         except Exception:
             logger.error("ERROR requesting uri(%s) payload(%s)" % (url, data))
             raise
@@ -424,7 +424,7 @@ class GlpiService(object):
         if change == "changeActiveProfile":
             payload = '{"profiles_id": %d}' % (item_id)
 
-        response = self.request('POST', self.uri, data=payload)
+        response = self.request('POST', self.uri, data=json_import.dumps(payload))
         if response.text == "":
             return {"status": True}
         return response.json()
