@@ -423,10 +423,7 @@ class GlpiService(object):
 
         if change == "changeActiveProfile":
             payload = '{"profiles_id": %d}' % (item_id)
-
-        response = self.request('POST', self.uri, data=json_import.dumps(payload))
-        print(json_import.dumps(payload))
-        print(response.status_code)
+        response = self.request('POST', self.uri, json=payload)
         if response.text == "":
             return {"status": True}
         return response.json()
