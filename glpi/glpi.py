@@ -434,9 +434,10 @@ class GlpiService(object):
 
         payload = '{"input": { %s }}' % (self.get_payload(data))
         new_url = "%s/%d" % (self.uri, data['id'])
-
+        print(import_json.dumps(payload)
         response = self.request('PUT', new_url, json=payload)
-
+        print(response.status_code)
+        print(response.text)
         return response.json()
 
     # [D]ELETE an Item
