@@ -325,6 +325,10 @@ class GlpiService(object):
             response = requests.request(method=method, url=full_url,
                                         headers=headers, params=params,
                                         data=data, json=json, **kwargs)
+            print(response.request.url)
+            try:
+                print(response.request.json)
+            
         except Exception:
             logger.error("ERROR requesting uri(%s) payload(%s)" % (url, data))
             raise
