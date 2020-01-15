@@ -348,7 +348,7 @@ class GlpiService(object):
             if data_json[k] == null_str:
                 data_str = '%s "%s": null' % (data_str, k)
             elif isinstance(data_json[k], str):
-                data_str = '%s "%s": "%s"' % (data_str, k, data_json[k])
+                data_str = '%s "%s": "%s"' % (data_str, k, data_json[k].encode('utf-8'))
             else:
                 data_str = '%s "%s": %s' % (data_str, k, str(data_json[k]))
 
@@ -437,10 +437,10 @@ class GlpiService(object):
     def update(self, data):
         """ Update an object Item. """
 
-        payload = '{"input": { %s }}' % (self.get_payload(data))
+        payload = {"input": { %s }}' % (self.get_payload(data))
         new_url = "%s/%d" % (self.uri, data['id'])
         print(payload)
-        response = self.request('PUT', new_url, json=payload)
+        response = self.request('PUT', new_url, data=payload)
         print(response.status_code)
         print(response.text)
         return response.json()
